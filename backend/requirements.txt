@@ -1,0 +1,10 @@
+flask
+flask-cors
+numpy
+lightgbm
+torch
+torchvision
+timm
+transformers
+pillow
+joblib
