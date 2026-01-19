@@ -4,7 +4,7 @@ This project focuses on multi-eye disease classification using lens-assisted ret
 
 *Overview*
 
-The model uses EfficientNet-B5, ResNet-RS-50, Swin Transformer, and ViT-B/16 for hybrid feature extraction. Attention U-Net is used for segmentation and LightGBM is used for final classification. A Flask backend and a simple web frontend support real-time inference and explainability.
+The model uses EfficientNet-B5, ResNet-RS-50, Swin Transformer, and ViT-B/16 for hybrid feature extraction and LightGBM is used for final classification. A Flask backend and a simple web frontend support real-time inference and explainability.
 
 *Features*
 
