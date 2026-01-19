@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EyeHealth AI Companion</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app-container" class="app-container">
+    <header class="header">
+      <div class="logo-area">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 512 512" fill="currentColor" class="logo-svg">
+          <path d="M256 96C141.1 96 48.1 176 16 256c32.1 80 125.1 160 240 160s207.9-80 240-160c-32.1-80-125.1-160-240-160zm0 272a112 112 0 1 1 0-224 112 112 0 0 1 0 224zm0-192a80 80 0 1 0 0 160 80 80 0 0 0 0-160z"/>
+        </svg>
+        <h2 class="brand-name">EyeHealth AI Companion</h2>
+      </div>
+        <button id="back-home-button" class="btn secondary-btn hidden">Back to Home</button>
+
+    </header>
+
+    <main id="main-content">
+      <!-- Home View -->
+      <section id="home-view" class="page-view home-view">
+        <div class="content-center">
+          <h1 class="page-title">Eye Disease Detection System</h1>
+          <p class="page-description">
+            Welcome to our AI-powered platform. Upload your eye images to receive fast and reliable predictions.
+          </p>
+          <div class="button-group">
+            <button id="home-start-button" class="btn primary-btn large-btn home-btn-fix">Begin Analysis</button>
+            <button id="home-learn-button" class="btn secondary-btn large-btn home-btn-fix">Learn More</button>
+          </div>
+        </div>
+      </section>
+      <!-- Learn More View -->
+<section id="learn-view" class="page-view learn-view hidden">
+  <div class="content-container">
+    <div class="text-center">
+      <h1 class="page-title">Learn More About EyeHealth AI</h1>
+      <p class="page-description">
+        Discover how our AI system works, why early eye detection is crucial, and practical tips to protect your vision.
+      </p>
+    </div>
+
+    <!-- 1. How EyeHealth AI Works -->
+    <div class="learn-section">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h2>How EyeHealth AI Works</h2>
+          <ul class="journey-list">
+            <li>Upload an eye image</li>
+            <li>AI analyzes using multiple models</li>
+            <li>Get results with Grad-CAM visualization</li>
+            <li>Take action: consult a doctor if needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Why Early Detection Matters -->
+    <div class="learn-section">
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h2>Why Early Detection Matters</h2>
+          <ul class="infographic-list">
+            <li>285M people with vision impairment worldwide</li>
+            <li>80% of blindness is preventable with early detection</li>
+            <li>AI-assisted detection speeds diagnosis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Common Questions -->
+    <div class="learn-section">
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h2>Common Questions</h2>
+          <details>
+            <summary>What eye diseases does this AI detect?</summary>
+            Myopia, Retinitis Pigmentosa, CSR, Ocular Toxoplasmosis, and more.
+          </details>
+          <details>
+            <summary>How accurate is the AI?</summary>
+            Accuracy ranges from 98–99% on tested datasets.
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Our AI Technology -->
+    <div class="learn-section">
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h2>Our AI Technology</h2>
+          <p>We combine EfficientNet, ResNet, Swin Transformer, and ViT models to extract features and provide accurate predictions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Practical Eye Care Tips -->
+    <div class="learn-section">
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h2>Practical Eye Care Tips</h2>
+          <ul>
+            <li>Blink often when using screens</li>
+            <li>Annual eye check-ups</li>
+            <li>Eat vitamin-rich foods for eye health</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer-area">
+      <button id="learn-back-button" class="btn primary-btn wide-btn">Back to Home</button>
+    </div>
+  </div>
+</section>
+
+
+      <!-- Upload View -->
+      <section id="upload-view" class="page-view upload-view hidden">
+        <div class="content-container">
+          <div class="text-center">
+            <h1 class="page-title">Eye Disease Detection</h1>
+            <p class="page-description">Upload an eye image to get AI-powered prediction.</p>
+          </div>
+          
+          <div class="upload-area-grid">
+            <div class="left-column">
+              <div id="drag-drop-area" class="drag-drop-box">
+                <p class="drag-drop-text">Drag and drop an image here</p>
+                <label for="file-upload" class="btn primary-btn upload-label">Upload Eye Image</label>
+                <input id="file-upload" type="file" accept="image/png, image/jpeg" class="file-input">
+                <p class="file-formats">Accepted formats: JPG, PNG</p>
+              </div>
+            </div>
+
+            <div class="right-column">
+              <h3 class="image-title">Image Preview</h3>
+              <div id="image-preview-container" class="image-preview-container">
+                <span id="no-image-text">No image selected</span>
+              </div>
+            </div>
+          </div>
+          
+          <button id="predict-button" class="btn primary-btn predict-button">Predict</button>
+          
+          <div id="error-message" class="error-message error-text hidden"></div>
+        </div>
+      </section>
+
+      <!-- Predict View -->
+      <section id="predict-view" class="page-view predict-view hidden">
+        <div class="content-container">
+
+          
+          <div class="text-center">
+            <h2 class="page-title">Prediction Results</h2>
+            <p class="page-description">AI-powered analysis of your uploaded eye image.</p>
+          </div>
+          
+          <div class="image-comparison-area">
+            <div class="image-box">
+              <h3 class="image-title">Original Image</h3>
+              <div id="original-image-container" class="image-wrapper"></div>
+            </div>
+            <div class="image-box">
+              <h3 class="image-title">Grad-CAM Heatmap</h3>
+              <div id="gradcam-image-container" class="image-wrapper"></div>
+            </div>
+          </div>
+
+          <div id="prediction-summary" class="summary-box"></div>
+
+          
+
+          <div class="disclaimer-area">
+               <button id="analyze-again-button" class="btn primary-btn wide-btn">Analyze Another Image</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
