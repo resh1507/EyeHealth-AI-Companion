@@ -1,1 +1,0 @@
-# EyeHealth-AI-Companion
